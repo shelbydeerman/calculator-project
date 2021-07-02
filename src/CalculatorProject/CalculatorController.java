@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.lang.Character;
+import java.lang.Math;
 
 
 public class CalculatorController {
@@ -69,8 +70,17 @@ public class CalculatorController {
     public void squaringCalculation() {
         String text = getExpression().getText();
         double squared = Double.parseDouble(text);
-        squared = squared * squared;
+        // squared = squared * squared;
+        squared = Math.pow(squared, 2);
         text = String.valueOf(squared);
+        expression.setText(text);
+    }
+
+    public void squareRootCalculation() {
+        String text = getExpression().getText();
+        double squareRoot = Double.parseDouble(text);
+        squareRoot = Math.sqrt(squareRoot);
+        text = String.valueOf(squareRoot);
         expression.setText(text);
     }
 
@@ -118,7 +128,7 @@ public class CalculatorController {
                 squaringCalculation();
                 break;
             case "√x":
-                // square root method
+                squareRootCalculation();
                 break;
             case "+/-":
                 // negation method
