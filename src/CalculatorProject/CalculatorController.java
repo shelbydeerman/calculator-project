@@ -12,8 +12,11 @@ public class CalculatorController {
     @FXML
     private Label expression;
 
-//    @FXML
-//    private Label result;
+    @FXML
+    private Label storage;
+
+    @FXML
+    private Label result;
 
     public Label getExpression() {
         return expression;
@@ -24,21 +27,24 @@ public class CalculatorController {
     }
 
     public void insertOperator(String operator) {
-        expression.setText(expression.getText() + " " + operator + " ");
+        storage.setText(storage.getText() + expression.getText() + " " + operator + " ");
+        expression.setText("");
     }
 
     public void clearExpression() {
         expression.setText("");
+        storage.setText("");
     }
 
     public void clearEntry() {
-        if (!getExpression().getText().isEmpty()) {
-            StringBuilder text = new StringBuilder(getExpression().getText());
-            while (Character.isDigit(text.charAt(text.length() - 1)) || text.charAt(text.length() - 1) == '.') {
-                text.deleteCharAt(text.length() - 1);
-            }
-            expression.setText(text.toString());
-        }
+//        if (!getExpression().getText().isEmpty()) {
+//            StringBuilder text = new StringBuilder(getExpression().getText());
+//            while (Character.isDigit(text.charAt(text.length() - 1)) || text.charAt(text.length() - 1) == '.') {
+//                text.deleteCharAt(text.length() - 1);
+//            }
+//            expression.setText(text.toString());
+//        }
+        expression.setText("");
     }
 
     public void deleteLast() {
@@ -75,13 +81,11 @@ public class CalculatorController {
             case "-":
             case "*":
             case "/":
-            case "%":
                 // operator method
                 insertOperator(buttonText);
                 break;
             case "C":
                 // clear method
-                // change to where this method deletes the result label too??
                 clearExpression();
                 break;
             case "CE":
@@ -92,6 +96,9 @@ public class CalculatorController {
             case "DELETE":
                 // delete method
                 deleteLast();
+                break;
+            case "%":
+                // percentage method
                 break;
             case "1/x":
                 // fraction method
