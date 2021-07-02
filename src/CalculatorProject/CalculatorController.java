@@ -55,8 +55,15 @@ public class CalculatorController {
         double percentage = Double.parseDouble(text);
         percentage = percentage * 0.01;
         text = String.valueOf(percentage);
-        storage.setText(storage.getText() + text);
-        expression.setText("");
+        expression.setText(text);
+    }
+
+    public void fractionCalculation() {
+        String text = getExpression().getText();
+        double fraction = Double.parseDouble(text);
+        fraction = 1 / fraction;
+        text = String.valueOf(fraction);
+        expression.setText(text);
     }
 
     public void onMouseClick(ActionEvent actionEvent) {
@@ -76,35 +83,28 @@ public class CalculatorController {
             case "9":
             case "0":
             case ".":
-                // number method
                 insertNumber(buttonText);
                 break;
             case "+":
             case "-":
             case "*":
             case "/":
-                // operator method
                 insertOperator(buttonText);
                 break;
             case "C":
-                // clear method
                 clearExpression();
                 break;
             case "CE":
-                // clear entry method
-                // change to where this method deletes the whole expression label??
                 clearEntry();
                 break;
             case "DELETE":
-                // delete method
                 deleteLast();
                 break;
             case "%":
-                // percentage method
                 percentageCalculation();
                 break;
             case "1/x":
-                // fraction method
+                fractionCalculation();
                 break;
             case "x²":
                 // squaring method
