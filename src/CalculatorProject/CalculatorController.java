@@ -66,6 +66,14 @@ public class CalculatorController {
         expression.setText(text);
     }
 
+    public void squaringCalculation() {
+        String text = getExpression().getText();
+        double squared = Double.parseDouble(text);
+        squared = squared * squared;
+        text = String.valueOf(squared);
+        expression.setText(text);
+    }
+
     public void onMouseClick(ActionEvent actionEvent) {
 
         Button button = (Button) actionEvent.getSource();
@@ -107,7 +115,7 @@ public class CalculatorController {
                 fractionCalculation();
                 break;
             case "x²":
-                // squaring method
+                squaringCalculation();
                 break;
             case "√x":
                 // square root method
