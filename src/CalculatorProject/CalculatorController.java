@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.lang.Character;
+import java.lang.Math;
 
 
 public class CalculatorController {
@@ -12,8 +13,11 @@ public class CalculatorController {
     @FXML
     private Label expression;
 
-//    @FXML
-//    private Label result;
+    @FXML
+    private Label storage;
+
+    @FXML
+    private Label result;
 
     public Label getExpression() {
         return expression;
@@ -24,21 +28,17 @@ public class CalculatorController {
     }
 
     public void insertOperator(String operator) {
-        expression.setText(expression.getText() + " " + operator + " ");
+        storage.setText(storage.getText() + expression.getText() + " " + operator + " ");
+        expression.setText("");
     }
 
     public void clearExpression() {
         expression.setText("");
+        storage.setText("");
     }
 
     public void clearEntry() {
-        if (!getExpression().getText().isEmpty()) {
-            StringBuilder text = new StringBuilder(getExpression().getText());
-            while (Character.isDigit(text.charAt(text.length() - 1)) || text.charAt(text.length() - 1) == '.') {
-                text.deleteCharAt(text.length() - 1);
-            }
-            expression.setText(text.toString());
-        }
+        expression.setText("");
     }
 
     public void deleteLast() {
@@ -49,6 +49,47 @@ public class CalculatorController {
                 expression.setText(text.toString());
             }
         }
+    }
+
+    public void percentageCalculation() {
+        String text = getExpression().getText();
+        double percentage = Double.parseDouble(text);
+        percentage = percentage * 0.01;
+        text = String.valueOf(percentage);
+        expression.setText(text);
+    }
+
+    public void fractionCalculation() {
+        String text = getExpression().getText();
+        double fraction = Double.parseDouble(text);
+        fraction = 1 / fraction;
+        text = String.valueOf(fraction);
+        expression.setText(text);
+    }
+
+    public void squaringCalculation() {
+        String text = getExpression().getText();
+        double squared = Double.parseDouble(text);
+        // squared = squared * squared;
+        squared = Math.pow(squared, 2);
+        text = String.valueOf(squared);
+        expression.setText(text);
+    }
+
+    public void squareRootCalculation() {
+        String text = getExpression().getText();
+        double squareRoot = Double.parseDouble(text);
+        squareRoot = Math.sqrt(squareRoot);
+        text = String.valueOf(squareRoot);
+        expression.setText(text);
+    }
+
+    public void negationCalculation() {
+        String text = getExpression().getText();
+        double negation = Double.parseDouble(text);
+        negation = -1 * negation;
+        text = String.valueOf(negation);
+        expression.setText(text);
     }
 
     public void onMouseClick(ActionEvent actionEvent) {
@@ -68,42 +109,37 @@ public class CalculatorController {
             case "9":
             case "0":
             case ".":
-                // number method
                 insertNumber(buttonText);
                 break;
             case "+":
             case "-":
             case "*":
             case "/":
-            case "%":
-                // operator method
                 insertOperator(buttonText);
                 break;
             case "C":
-                // clear method
-                // change to where this method deletes the result label too??
                 clearExpression();
                 break;
             case "CE":
-                // clear entry method
-                // change to where this method deletes the whole expression label??
                 clearEntry();
                 break;
             case "DELETE":
-                // delete method
                 deleteLast();
                 break;
+            case "%":
+                percentageCalculation();
+                break;
             case "1/x":
-                // fraction method
+                fractionCalculation();
                 break;
             case "x²":
-                // squaring method
+                squaringCalculation();
                 break;
             case "√x":
-                // square root method
+                squareRootCalculation();
                 break;
             case "+/-":
-                // negation method
+                negationCalculation();
                 break;
             case "=":
                 // link to evaluation class
