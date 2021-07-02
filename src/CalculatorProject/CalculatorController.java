@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import java.lang.Character;
 
 
 public class CalculatorController {
@@ -13,6 +14,10 @@ public class CalculatorController {
 
 //    @FXML
 //    private Label result;
+
+    public Label getExpression() {
+        return expression;
+    }
 
     public void insertNumber(String number) {
         expression.setText(expression.getText() + number);
@@ -24,6 +29,16 @@ public class CalculatorController {
 
     public void clearExpression() {
         expression.setText("");
+    }
+
+    public void deleteLast() {
+        if (!getExpression().getText().isEmpty()) {
+            StringBuilder text = new StringBuilder(getExpression().getText());
+            if (Character.isDigit(text.charAt(text.length() - 1)) || text.charAt(text.length() - 1) == '.') {
+                text.deleteCharAt(text.length() - 1);
+                expression.setText(text.toString());
+            }
+        }
     }
 
     public void onMouseClick(ActionEvent actionEvent) {
@@ -63,6 +78,7 @@ public class CalculatorController {
                 break;
             case "DELETE":
                 // delete method
+                deleteLast();
                 break;
             case "1/x":
                 // fraction method
