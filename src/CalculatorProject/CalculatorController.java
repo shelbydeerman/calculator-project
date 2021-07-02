@@ -31,6 +31,16 @@ public class CalculatorController {
         expression.setText("");
     }
 
+    public void clearEntry() {
+        if (!getExpression().getText().isEmpty()) {
+            StringBuilder text = new StringBuilder(getExpression().getText());
+            while (Character.isDigit(text.charAt(text.length() - 1)) || text.charAt(text.length() - 1) == '.') {
+                text.deleteCharAt(text.length() - 1);
+            }
+            expression.setText(text.toString());
+        }
+    }
+
     public void deleteLast() {
         if (!getExpression().getText().isEmpty()) {
             StringBuilder text = new StringBuilder(getExpression().getText());
@@ -71,10 +81,13 @@ public class CalculatorController {
                 break;
             case "C":
                 // clear method
+                // change to where this method deletes the result label too??
                 clearExpression();
                 break;
             case "CE":
                 // clear entry method
+                // change to where this method deletes the whole expression label??
+                clearEntry();
                 break;
             case "DELETE":
                 // delete method
