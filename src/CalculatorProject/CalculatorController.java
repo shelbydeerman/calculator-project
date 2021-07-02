@@ -22,6 +22,10 @@ public class CalculatorController {
         expression.setText(expression.getText() + " " + operator + " ");
     }
 
+    public void clearExpression() {
+        expression.setText("");
+    }
+
     public void onMouseClick(ActionEvent actionEvent) {
 
         Button button = (Button) actionEvent.getSource();
@@ -52,6 +56,7 @@ public class CalculatorController {
                 break;
             case "C":
                 // clear method
+                clearExpression();
                 break;
             case "CE":
                 // clear entry method
