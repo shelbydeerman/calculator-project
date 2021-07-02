@@ -18,6 +18,10 @@ public class CalculatorController {
         expression.setText(expression.getText() + number);
     }
 
+    public void insertOperator(String operator) {
+        expression.setText(expression.getText() + " " + operator + " ");
+    }
+
     public void onMouseClick(ActionEvent actionEvent) {
 
         Button button = (Button) actionEvent.getSource();
@@ -44,6 +48,7 @@ public class CalculatorController {
             case "/":
             case "%":
                 // operator method
+                insertOperator(buttonText);
                 break;
             case "C":
                 // clear method
