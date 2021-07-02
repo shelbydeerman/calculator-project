@@ -37,13 +37,6 @@ public class CalculatorController {
     }
 
     public void clearEntry() {
-//        if (!getExpression().getText().isEmpty()) {
-//            StringBuilder text = new StringBuilder(getExpression().getText());
-//            while (Character.isDigit(text.charAt(text.length() - 1)) || text.charAt(text.length() - 1) == '.') {
-//                text.deleteCharAt(text.length() - 1);
-//            }
-//            expression.setText(text.toString());
-//        }
         expression.setText("");
     }
 
@@ -55,6 +48,15 @@ public class CalculatorController {
                 expression.setText(text.toString());
             }
         }
+    }
+
+    public void percentageCalculation() {
+        String text = getExpression().getText();
+        double percentage = Double.parseDouble(text);
+        percentage = percentage * 0.01;
+        text = String.valueOf(percentage);
+        storage.setText(storage.getText() + text);
+        expression.setText("");
     }
 
     public void onMouseClick(ActionEvent actionEvent) {
@@ -99,6 +101,7 @@ public class CalculatorController {
                 break;
             case "%":
                 // percentage method
+                percentageCalculation();
                 break;
             case "1/x":
                 // fraction method
