@@ -84,6 +84,14 @@ public class CalculatorController {
         expression.setText(text);
     }
 
+    public void negationCalculation() {
+        String text = getExpression().getText();
+        double negation = Double.parseDouble(text);
+        negation = -1 * negation;
+        text = String.valueOf(negation);
+        expression.setText(text);
+    }
+
     public void onMouseClick(ActionEvent actionEvent) {
 
         Button button = (Button) actionEvent.getSource();
@@ -131,7 +139,7 @@ public class CalculatorController {
                 squareRootCalculation();
                 break;
             case "+/-":
-                // negation method
+                negationCalculation();
                 break;
             case "=":
                 // link to evaluation class
