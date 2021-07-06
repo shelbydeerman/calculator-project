@@ -37,6 +37,7 @@ public class CalculatorController {
     public void clearExpression() {
         expression.setText("");
         storage.setText("");
+        result.setText("");
     }
 
     public void clearEntry() {
@@ -143,11 +144,11 @@ public class CalculatorController {
                 negationCalculation();
                 break;
             case "=":
-                // link to evaluation class
-                // with link to evaluation method (maybe depending on the operator??)
                 storage.setText(storage.getText() + expression.getText());
                 expression.setText("");
-                evaluate.evaluateString(storage.getText());
+                double answer = evaluate.evaluateString(storage.getText());
+                result.setText("= " + answer);
+                storage.setText("");
                 break;
         }
     }
