@@ -19,6 +19,8 @@ public class CalculatorController {
     @FXML
     private Label result;
 
+    Evaluate evaluate = new Evaluate();
+
     public Label getExpression() {
         return expression;
     }
@@ -70,7 +72,6 @@ public class CalculatorController {
     public void squaringCalculation() {
         String text = getExpression().getText();
         double squared = Double.parseDouble(text);
-        // squared = squared * squared;
         squared = Math.pow(squared, 2);
         text = String.valueOf(squared);
         expression.setText(text);
@@ -144,6 +145,9 @@ public class CalculatorController {
             case "=":
                 // link to evaluation class
                 // with link to evaluation method (maybe depending on the operator??)
+                storage.setText(storage.getText() + expression.getText());
+                expression.setText("");
+                evaluate.evaluateString(storage.getText());
                 break;
         }
     }
