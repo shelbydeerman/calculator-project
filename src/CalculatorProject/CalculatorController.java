@@ -144,11 +144,16 @@ public class CalculatorController {
                 negationCalculation();
                 break;
             case "=":
-                storage.setText(storage.getText() + expression.getText());
-                expression.setText("");
-                double answer = evaluate.evaluateString(storage.getText());
-                result.setText("= " + answer);
-                storage.setText("");
+                if (storage.getText().isEmpty()) {
+                    result.setText("= " + expression.getText());
+                    expression.setText("");
+                } else {
+                    storage.setText(storage.getText() + expression.getText());
+                    expression.setText("");
+                    double answer = evaluate.evaluateString(storage.getText());
+                    result.setText("= " + answer);
+                    storage.setText("");
+                }
                 break;
         }
     }

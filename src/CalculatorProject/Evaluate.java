@@ -2,30 +2,28 @@ package CalculatorProject;
 
 public class Evaluate {
 
-    // can do some operations, no more than 1 at a time
-    // no negative numbers
-    // no double entries
+    // works for everything with single operations
     public double evaluateString(String expression) {
 
-        char[] array = expression.toCharArray();
-        double[] values = new double[2];
-        char[] operators = new char[1];
+        String[] array = expression.split("\\s+");
+        String[] values = new String[10];
 
-        char operator = ' ';
-        double value1 = array[0] - 48;
-        double value2 = 0;
+        int j = 0;
 
-        for (int i = 1; i < array.length; i++) {
+        String operator = "";
 
-            if (array[i] == '+' || array[i] == '-' ||array[i] == '*' ||array[i] == '/') {
+        for (int i = 0; i < array.length; i++) {
+
+            if (array[i].equals("+") || array[i].equals("-") || array[i].equals("*") ||array[i].equals("/")) {
                 operator = array[i];
-            } else if (array[i] >= '0' && array[i] <= '9') {
-                value2 = array[i] - 48;
+            } else if ( (array[i].charAt(0) >= '0' && array[i].charAt(0) <= '9') ||
+            (array[i].charAt(1) >= '0' && array[i].charAt(1) <= '9') ) {
+                values[j] = array[i];
+                j++;
             }
         }
 
-        return applyOperation(operator, value1, value2);
-        // return applyOperation(operators[0], values[0], values[1]);
+        return applyOperation(operator.charAt(0), Double.parseDouble(values[0]), Double.parseDouble(values[1]));
     }
 
     public static double applyOperation(char operation, double a, double b) {
