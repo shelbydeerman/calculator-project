@@ -30,8 +30,7 @@ public class CalculatorController {
     }
 
     public void insertOperator(String operator) {
-        storage.setText(storage.getText() + expression.getText() + " " + operator + " ");
-        expression.setText("");
+        expression.setText(expression.getText() + " " + operator + " ");
     }
 
     public void clearExpression() {
@@ -144,15 +143,14 @@ public class CalculatorController {
                 negationCalculation();
                 break;
             case "=":
-                if (storage.getText().isEmpty()) {
-                    result.setText("= " + expression.getText());
-                    expression.setText("");
+                if (expression.getText().isEmpty()) {
+                    result.setText("= ");
+                    storage.setText("");
                 } else {
-                    storage.setText(storage.getText() + expression.getText());
+                    storage.setText(expression.getText());
                     expression.setText("");
                     double answer = evaluate.evaluateString(storage.getText());
                     result.setText("= " + answer);
-                    storage.setText("");
                 }
                 break;
         }
