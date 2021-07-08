@@ -28,13 +28,13 @@ public class CalculatorController {
     }
 
     public void insertOperator(String operator) {
-        storage.setText(storage.getText() + expression.getText() + " " + operator + " ");
-        expression.setText("");
+        expression.setText(expression.getText() + " " + operator + " ");
     }
 
     public void clearExpression() {
         expression.setText("");
         storage.setText("");
+        result.setText("");
     }
 
     public void clearEntry() {
@@ -70,7 +70,6 @@ public class CalculatorController {
     public void squaringCalculation() {
         String text = getExpression().getText();
         double squared = Double.parseDouble(text);
-        // squared = squared * squared;
         squared = Math.pow(squared, 2);
         text = String.valueOf(squared);
         expression.setText(text);
@@ -142,8 +141,16 @@ public class CalculatorController {
                 negationCalculation();
                 break;
             case "=":
-                // link to evaluation class
-                // with link to evaluation method (maybe depending on the operator??)
+                if (expression.getText().isEmpty()) {
+                    result.setText("= ");
+                    storage.setText("");
+                } else {
+                    storage.setText(expression.getText());
+                    expression.setText("");
+                    String answer = Evaluate.evaluateString(storage.getText());
+                    // int answer = Evaluate.evaluate(storage.getText());
+                    result.setText("= " + answer);
+                }
                 break;
         }
     }
