@@ -52,43 +52,63 @@ public class CalculatorController {
     }
 
     public void percentageCalculation() {
-        String text = getExpression().getText();
-        double percentage = Double.parseDouble(text);
-        percentage = percentage * 0.01;
-        text = String.valueOf(percentage);
-        expression.setText(text);
+        try {
+            String text = getExpression().getText();
+            double percentage = Double.parseDouble(text);
+            percentage = percentage * 0.01;
+            text = String.valueOf(percentage);
+            expression.setText(text);
+        } catch (Exception e) {
+            System.out.println("Error!");
+        }
     }
 
     public void fractionCalculation() {
-        String text = getExpression().getText();
-        double fraction = Double.parseDouble(text);
-        fraction = 1 / fraction;
-        text = String.valueOf(fraction);
-        expression.setText(text);
+        try {
+            String text = getExpression().getText();
+            double fraction = Double.parseDouble(text);
+            fraction = 1 / fraction;
+            text = String.valueOf(fraction);
+            expression.setText(text);
+        } catch (Exception e) {
+            System.out.println("Error!");
+        }
     }
 
     public void squaringCalculation() {
-        String text = getExpression().getText();
-        double squared = Double.parseDouble(text);
-        squared = Math.pow(squared, 2);
-        text = String.valueOf(squared);
-        expression.setText(text);
+        try {
+            String text = getExpression().getText();
+            double squared = Double.parseDouble(text);
+            squared = Math.pow(squared, 2);
+            text = String.valueOf(squared);
+            expression.setText(text);
+        } catch (Exception e) {
+            System.out.println("Error!");
+        }
     }
 
     public void squareRootCalculation() {
-        String text = getExpression().getText();
-        double squareRoot = Double.parseDouble(text);
-        squareRoot = Math.sqrt(squareRoot);
-        text = String.valueOf(squareRoot);
-        expression.setText(text);
+        try {
+            String text = getExpression().getText();
+            double squareRoot = Double.parseDouble(text);
+            squareRoot = Math.sqrt(squareRoot);
+            text = String.valueOf(squareRoot);
+            expression.setText(text);
+        } catch (Exception e) {
+            System.out.println("Error!");
+        }
     }
 
     public void negationCalculation() {
-        String text = getExpression().getText();
-        double negation = Double.parseDouble(text);
-        negation = -1 * negation;
-        text = String.valueOf(negation);
-        expression.setText(text);
+        try {
+            String text = getExpression().getText();
+            double negation = Double.parseDouble(text);
+            negation = -1 * negation;
+            text = String.valueOf(negation);
+            expression.setText(text);
+        } catch (Exception e) {
+            System.out.println("Error!");
+        }
     }
 
     public void onMouseClick(ActionEvent actionEvent) {
