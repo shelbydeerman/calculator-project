@@ -19,8 +19,6 @@ public class CalculatorController {
     @FXML
     private Label result;
 
-    Evaluate evaluate = new Evaluate();
-
     public Label getExpression() {
         return expression;
     }
@@ -149,7 +147,8 @@ public class CalculatorController {
                 } else {
                     storage.setText(expression.getText());
                     expression.setText("");
-                    double answer = evaluate.evaluateString(storage.getText());
+                    String answer = Evaluate.evaluateString(storage.getText());
+                    // int answer = Evaluate.evaluate(storage.getText());
                     result.setText("= " + answer);
                 }
                 break;
