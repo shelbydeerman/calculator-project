@@ -215,17 +215,21 @@ public class CalculatorController {
                 break;
             // Defines what to do when the equals button is pushed
             case "=":
-                // Defines what to show on the "result" label if the "expression" label is empty
-                if (expression.getText().isEmpty()) {
-                    result.setText("= ");
-                    storage.setText("");
-                // Calls the "evaluateString" method in the "Evaluate" class to solve the expression
-                // Displays the answer in the "result" label
-                } else {
-                    storage.setText(expression.getText());
-                    expression.setText("");
-                    String answer = Evaluate.evaluateString(storage.getText());
-                    result.setText("= " + answer);
+                try {
+                    // Defines what to show on the "result" label if the "expression" label is empty
+                    if (expression.getText().isEmpty()) {
+                        result.setText("= ");
+                        storage.setText("");
+                        // Calls the "evaluateString" method in the "Evaluate" class to solve the expression
+                        // Displays the answer in the "result" label
+                    } else {
+                        storage.setText(expression.getText());
+                        expression.setText("");
+                        String answer = Evaluate.evaluateString(storage.getText());
+                        result.setText("= " + answer);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error!");
                 }
                 break;
         }
